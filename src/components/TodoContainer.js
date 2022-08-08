@@ -46,8 +46,8 @@ class TodoContainer extends React.Component {
 
     add = (title) => {
       const newTodo = {
-        id: 4,
-        title,
+        id: uuidv4(),
+        title: title,
         completed: false,
       };
       this.setState({
