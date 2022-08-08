@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,7 +31,6 @@ class TodoContainer extends React.Component {
   }
 
     handleChange = (id) => {
-      console.log('clicked', id);
       this.setState((prevState) => ({
         todos: prevState.todos.map((todo) => {
           if (id === todo.id) {
@@ -45,6 +45,7 @@ class TodoContainer extends React.Component {
     }
 
     add = (title) => {
+      const { todos } = this.state;
       const newTodo = {
         id: 4,
         title,
@@ -52,28 +53,28 @@ class TodoContainer extends React.Component {
       };
       this.setState({
         todos: [
-          ...this.state.todos,
+          ...todos,
           newTodo,
         ],
       });
-      console.log('added', title);
     }
 
     delete = (id) => {
-      console.log('deleted', id);
+      const { todos } = this.state;
       this.setState({
-        todos: this.state.todos.filter((todo) => todo.id !== id),
+        todos: todos.filter((todo) => todo.id !== id),
       });
     }
 
     render() {
+      const { todos } = this.state;
       return (
         <>
           <div className="container">
             <div className="inner">
               <Header />
               <InputTodo addProps={this.add} />
-              <TodosList todos={this.state.todos} handleChangeProps={this.handleChange} deleteProps={this.delete} />
+              <TodosList todos={todos} handleChangeProps={this.handleChange} deleteProps={this.delete} />
             </div>
           </div>
         </>
